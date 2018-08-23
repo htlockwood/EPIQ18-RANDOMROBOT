@@ -2,29 +2,27 @@ use Libraries.Robots.Lego.Button
 use Libraries.Robots.Lego.Sound
 use Libraries.Robots.Lego.Screen
 use Libraries.Compute.Random
-
 Button buttonCtrl
 Sound soundCtrl
 Screen screenCtrl
 Random random
-
 integer firstRandomNumber=0
 integer secondRandomNumber=0
-
 screenCtrl:OutputCenter("RANDOM", 1)
 screenCtrl:OutputCenter("ROBOT", 2)
-screenCtrl:OutputCenter("ESC=end Center=new #", 6)
-
-
+screenCtrl:OutputCenter("ESC=end", 3)
+screenCtrl:OutputCenter("Center=new #", 4)
+screenCtrl:OutputCenter(firstRandomNumber+" & "+secondRandomNumber, 4)
 soundCtrl:Beep()
 buttonCtrl:SetLightPattern(3)
 repeat until buttonCtrl:IsButtonPressed(buttonCtrl:ESCAPE_BUTTON)
     if buttonCtrl:IsButtonPressed(buttonCtrl:CENTER_BUTTON)
-firstRandomNumber=random:RandomIntegerBetween(1, 6)
-secondRandomNumber=random:RandomIntegerBetween(12, 24)
-screenCtrl:OutputCenterLarge("#= " + firstRandomNumber + " & " + secondRandomNumber , 4)
+        firstRandomNumber=random:RandomIntegerBetween(1, 6)
+        secondRandomNumber=random:RandomIntegerBetween(12, 24)
+        screenCtrl:OutputCenterLarge("#= " + firstRandomNumber + " & " + secondRandomNumber , 4)
         soundCtrl:PlayTone(18, 1000)
-
     end
+    screenCtrl:OutputCenterLarge("#= " + firstRandomNumber + " & " + secondRandomNumber , 4)
+    soundCtrl:PlayTone(220, 1000)
 end
 soundCtrl:Buzz()
